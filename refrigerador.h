@@ -1,5 +1,5 @@
-#ifndef REFRIGERADOR  // Previne múltiplas inclusões do cabeçalho
-#define REFRIGERADOR
+#ifndef PROJETO_ESTUFAS  // Previne múltiplas inclusões do cabeçalho
+#define PROJETO_ESTUFAS
 
 // =============================
 // Bibliotecas padrão e específicas do Raspberry Pi Pico
@@ -40,7 +40,7 @@
 #define BUTTON_B 6
 
 // Configurações gerais
-#define BRILHO_PADRAO 20  // Intensidade padrão do brilho
+#define BRILHO_PADRAO 100  // Intensidade padrão do brilho
 #define DEBOUNCE_TIME 200
 // Matriz de LEDs
 #define MATRIZ_PIN 7       // Pino da matriz de LEDs
@@ -81,8 +81,8 @@ bool led_joystick = true;
 absolute_time_t ultima_interrupcao = 0;
 ssd1306_t display_oled;
 bool botao_pressionado = false;
-int percentual_refrigerador_vermelho = 0;
-int percentual_refrigerador_azul = 0;
+int temperatura_estufa_B = 0;
+int temperatura_estufa_A = 0;
 repeating_timer_t timer;
 // Instâncias de hardware
 ssd1306_t ssd;  // Display OLED
@@ -108,4 +108,4 @@ int16_t deslocamento_y(uint16_t valor);
 void som_buz(uint16_t freq, uint16_t duration_ms);
 bool callback_timer(repeating_timer_t *t);
 void bip_alerta();
-#endif // REFRIGERADOR
+#endif // PROJETO_ESTUFAS

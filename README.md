@@ -1,6 +1,6 @@
-# SISTEMA EMBARCADO PARA MONITORAMENTO DO SISTEMA DE REFRIGERAÇÃO
+# SISTEMA EMBARCADO PARA MONITORAMENTO DE TEMPERATURA DE ESTUFAS
 
-Este projeto tem como objetivo desenvolver um sistema de alerta para monitoramento de um sistema de refrigeração com dois refrigeradores, utilizando exclusivamente a placa BitDogLab.
+Este projeto tem como objetivo desenvolver um sistema de alerta para monitoramento de temperatura de estufas, utilizando exclusivamente a placa BitDogLab.
 
 A proposta consiste em permitir, por meio dos botões da placa, a definição da temperatura máxima permitida. Caso essa temperatura seja ultrapassada, o sistema emitirá um alerta sonoro.
 
@@ -20,7 +20,7 @@ Para simular as variações de temperatura dos dois refrigeradores, será utiliz
 ## Funcionalidade
 
 Ao iniciar o programa, o display OLED exibirá constantemente um quadrado que se movimenta conforme a movimentação do joystick.
-Além disso, a cada segundo serão impressos no Serial Monitor os valores de temperatura dos refrigeradores (vermelho e azul), em graus Celsius.
+Além disso, a cada segundo serão impressos no Serial Monitor os valores de temperatura das estufas A e B (Azul e vermelho respectivamente), em graus Celsius.
 
 **MOVIMENTANDO O JOYSTICK EIXO Y**
 

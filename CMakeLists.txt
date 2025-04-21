@@ -29,30 +29,30 @@ set(PICO_BOARD pico CACHE STRING "Board type")
 include(pico_sdk_import.cmake)
 
 # Definir o projeto
-project(refrigerador C CXX ASM)
+project(projeto_estufas C CXX ASM)
 
 # Inicializar o SDK do Pico
 pico_sdk_init()
 
 # Adicionar executável e arquivos necessários
-add_executable(refrigerador 
-    refrigerador.c 
+add_executable(projeto_estufas 
+    projeto_estufas.c 
     lib/ssd1306.c  # Arquivo de controle do display OLED
 )
 
 # Definir nome e versão do programa
-pico_set_program_name(refrigerador "refrigerador")
-pico_set_program_version(refrigerador "0.1")
+pico_set_program_name(projeto_estufas "projeto_estufas")
+pico_set_program_version(projeto_estufas "0.1")
 
 # Gerar cabeçalho PIO (se necessário)
-pico_generate_pio_header(refrigerador ${CMAKE_CURRENT_LIST_DIR}/pio_wave.pio)
+pico_generate_pio_header(projeto_estufas ${CMAKE_CURRENT_LIST_DIR}/pio_wave.pio)
 
 # Habilitar saída via UART/USB
-pico_enable_stdio_uart(refrigerador 1)
-pico_enable_stdio_usb(refrigerador 1)
+pico_enable_stdio_uart(projeto_estufas 1)
+pico_enable_stdio_usb(projeto_estufas 1)
 
 # Vincular bibliotecas necessárias
-target_link_libraries(refrigerador
+target_link_libraries(projeto_estufas
     pico_stdlib
     hardware_pio   # Suporte para LEDs endereçáveis
     hardware_i2c   # Suporte para o display OLED via I2C
@@ -61,10 +61,10 @@ target_link_libraries(refrigerador
 )
 
 # Incluir diretórios necessários
-target_include_directories(refrigerador PRIVATE
+target_include_directories(projeto_estufas PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/lib  # Certifique-se de que "inc" contém os headers adequados
 )
 
 # Gerar arquivos de saída adicionais
-pico_add_extra_outputs(refrigerador)
+pico_add_extra_outputs(projeto_estufas)

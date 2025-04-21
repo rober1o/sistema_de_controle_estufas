@@ -14,28 +14,28 @@ int main()
     while (true)
     {
         adc_select_input(0);
-        uint16_t leitura_refrigerador_azul = adc_read();
+        uint16_t leitura_estufa_A = adc_read();
         adc_select_input(1);
-        uint16_t leitura_refrigerador_vermelho = adc_read();
+        uint16_t leitura_estufa_B = adc_read();
 
         // Converte valores dos sensores para porcentagem ajustando de acordo o erro do joystick
-        percentual_refrigerador_vermelho = (abs(leitura_refrigerador_vermelho - 2047) * 100) / 2047 - (MARGEM_ERRO/100);
-        percentual_refrigerador_azul = (abs(leitura_refrigerador_azul - 2047) * 100) / 2047 - (MARGEM_ERRO/100);
+        temperatura_estufa_B = (abs(leitura_estufa_B - 2047) * 100) / 2047 - (MARGEM_ERRO/100);
+        temperatura_estufa_A = (abs(leitura_estufa_A - 2047) * 100) / 2047 - (MARGEM_ERRO/100);
 
-        if (percentual_refrigerador_azul > (numero * 10))
+        if (temperatura_estufa_A > (numero * 10))
         {
             printf("ALERTA: REFRIGERADOR AZUL COM TEMPERATURA ALTA\n");
             bip_alerta();
-        }else if(percentual_refrigerador_vermelho > (numero * 10)){
+        }else if(temperatura_estufa_B > (numero * 10)){
             printf("ALERTA: REFRIGERADOR VERMELHO COM TEMPERATURA ALTA\n");
             bip_alerta();
         }
 
-        pwm_set_gpio_level(LED_BLUE, deslocamento_y(leitura_refrigerador_azul));
-        pwm_set_gpio_level(LED_RED, deslocamento_x(leitura_refrigerador_vermelho));
+        pwm_set_gpio_level(LED_BLUE, deslocamento_y(leitura_estufa_A));
+        pwm_set_gpio_level(LED_RED, deslocamento_x(leitura_estufa_B));
 
-        int pos_x = centro_x + ((2048 - (int)leitura_refrigerador_vermelho) * centro_x) / 2048;
-        int pos_y = centro_y + ((2048 - (int)leitura_refrigerador_azul) * centro_y) / 2048;
+        int pos_x = centro_x + ((2048 - (int)leitura_estufa_B) * centro_x) / 2048;
+        int pos_y = centro_y + ((2048 - (int)leitura_estufa_A) * centro_y) / 2048;
 
         atualizar_display();
         ssd1306_rect(&display_oled, pos_y, pos_x, quadrado, quadrado, true, true);
@@ -181,7 +181,7 @@ void callback_botoes(uint pino, uint32_t eventos)
             numero--; // Decrementa o número
         }
 
-        botao_pressionado = true;
+        botao_pressionado = true; // acionará a flag que será usada no loop principal para emitir alerta sobre mudança do valor
 
         exibir_numero(); // Atualiza a exibição do número
     }
@@ -317,7 +317,7 @@ void bip_alerta()
 
 bool callback_timer(repeating_timer_t *t)
 {
-    printf("REFRIGERADOR VERMELHO: %d ºC\n", percentual_refrigerador_vermelho);
-    printf("REFRIGERADOR AZUL: %d ºC\n", percentual_refrigerador_azul);
+    printf("ESTUFA A (AZUL): %dºC\n", temperatura_estufa_A);
+    printf("ESTUFA B (VERMELHA): %dºC\n", temperatura_estufa_B);
     return true; 
 }
