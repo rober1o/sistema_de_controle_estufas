@@ -21,8 +21,8 @@
 // =============================
 #include "pio_wave.pio.h"  // Código PIO 
 #include "numeros.h"       // Arrays para exibir na matriz de LED
-#include "inc/ssd1306.h"   // Controle do display OLED SSD1306
-#include "inc/font.h"      // Manipulação de fontes
+#include "lib/ssd1306.h"   // Controle do display OLED SSD1306
+#include "lib/font.h"      // Manipulação de fontes
 
 // =============================
 // Definições de hardware

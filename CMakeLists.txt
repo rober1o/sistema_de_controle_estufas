@@ -1,18 +1,3 @@
-# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
-if(WIN32)
-    set(USERHOME $ENV{USERPROFILE})
-else()
-    set(USERHOME $ENV{HOME})
-endif()
-set(sdkVersion 2.1.0)
-set(toolchainVersion 13_3_Rel1)
-set(picotoolVersion 2.1.0)
-set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
-if (EXISTS ${picoVscode})
-    include(${picoVscode})
-endif()
-# ====================================================================================
-
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_C_STANDARD 11)
@@ -52,7 +37,7 @@ pico_sdk_init()
 # Adicionar executável e arquivos necessários
 add_executable(refrigerador 
     refrigerador.c 
-    inc/ssd1306.c  # Arquivo de controle do display OLED
+    lib/ssd1306.c  # Arquivo de controle do display OLED
 )
 
 # Definir nome e versão do programa
