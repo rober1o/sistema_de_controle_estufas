@@ -1,4 +1,4 @@
-#include "refrigerador.h"
+#include "projeto_estufas.h"
 
 
 
@@ -24,10 +24,10 @@ int main()
 
         if (temperatura_estufa_A > (numero * 10))
         {
-            printf("ALERTA: REFRIGERADOR AZUL COM TEMPERATURA ALTA\n");
+            printf("ALERTA: ESTUFA A COM TEMPERATURA ALTA\n");
             bip_alerta();
         }else if(temperatura_estufa_B > (numero * 10)){
-            printf("ALERTA: REFRIGERADOR VERMELHO COM TEMPERATURA ALTA\n");
+            printf("ALERTA: ESTUFA B COM TEMPERATURA ALTA\n");
             bip_alerta();
         }
 
