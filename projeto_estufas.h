@@ -59,7 +59,7 @@
 #define BOTAO_JOYSTICK 22
 #define PWM_LIMITE 4095
 #define PWM_DIVISOR 30.52f
-#define MARGEM_ERRO 300   // Define a faixa onde os LEDs permanecerão apagados
+#define MARGEM_ERRO 0   // Define a faixa onde os LEDs permanecerão apagados
 #define BUZZER_PIN 21 // Defina o pino do buzzer
 
 
