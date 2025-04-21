@@ -63,7 +63,7 @@ target_link_libraries(refrigerador
 # Incluir diretórios necessários
 target_include_directories(refrigerador PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
-    ${CMAKE_CURRENT_LIST_DIR}/inc  # Certifique-se de que "inc" contém os headers adequados
+    ${CMAKE_CURRENT_LIST_DIR}/lib  # Certifique-se de que "inc" contém os headers adequados
 )
 
 # Gerar arquivos de saída adicionais
