@@ -18,10 +18,11 @@ int main()
         adc_select_input(1);
         uint16_t leitura_estufa_B = adc_read();
 
-        // Converte valores dos sensores para porcentagem ajustando de acordo o erro do joystick
+        // Converte valores dos sensores para valores de 0 a 100 ajustando de acordo o erro do joystick
         temperatura_estufa_B = (abs(leitura_estufa_B - 2047) * 100) / 2047 - (MARGEM_ERRO/100);
         temperatura_estufa_A = (abs(leitura_estufa_A - 2047) * 100) / 2047 - (MARGEM_ERRO/100);
 
+        // emite alerta caso alguma das estufas ultrapasse a temperatura pré definida
         if (temperatura_estufa_A > (numero * 10))
         {
             printf("ALERTA: ESTUFA A COM TEMPERATURA ALTA\n");
@@ -30,17 +31,17 @@ int main()
             printf("ALERTA: ESTUFA B COM TEMPERATURA ALTA\n");
             bip_alerta();
         }
-
+        // aumenta o brilho do led proprocional a temperatura via PWM
         pwm_set_gpio_level(LED_BLUE, deslocamento_y(leitura_estufa_A));
         pwm_set_gpio_level(LED_RED, deslocamento_x(leitura_estufa_B));
 
         int pos_x = centro_x + ((2048 - (int)leitura_estufa_B) * centro_x) / 2048;
         int pos_y = centro_y + ((2048 - (int)leitura_estufa_A) * centro_y) / 2048;
-
+        // atualiza em tempo real a posição do quadrado de acordo o joystick
         atualizar_display();
         ssd1306_rect(&display_oled, pos_y, pos_x, quadrado, quadrado, true, true);
         ssd1306_send_data(&display_oled);
-
+        //informa caso a temperatura máxima for alterada pelo usuario
         if (botao_pressionado)
         {
             printf("A temperatura máxima foi alterada para %d ºC\n", numero * 10);
@@ -49,6 +50,8 @@ int main()
 
     }
 }
+
+//função responsável por inicializar os perifericos utilizados
 
 void inicializar_hardware()
 {
@@ -144,21 +147,21 @@ void inicializar_pwm(uint pino, uint limite, float divisor)
     pwm_init(slice, &config, true);
 }
 
-// Mapeamento do eixo Y com zona morta
+// Mapeamento do eixo Y com margem de erro
 int16_t deslocamento_y(uint16_t valor)
 {
     int16_t deslocamento = (valor < 2047) ? (2047 - valor) : (valor - 2047);
     return (deslocamento < MARGEM_ERRO) ? 0 : deslocamento;
 }
 
-// Mapeamento do eixo X com zona morta
+// Mapeamento do eixo X commargem de erro
 int16_t deslocamento_x(uint16_t valor)
 {
     int16_t deslocamento = (valor < 2047) ? (2047 - valor) : (valor - 2047);
     return (deslocamento < MARGEM_ERRO) ? 0 : deslocamento;
 }
 
-// Desenha bordas no display
+// Desenha bordas no display e atualiza a posição do joystick
 void atualizar_display()
 {
     ssd1306_config(&display_oled);
@@ -290,7 +293,7 @@ void exibir_numero()
         break;
     }
 }
-
+// função pra emissão de som no buzzer
 void som_buz(uint16_t freq, uint16_t duration_ms)
 {
     uint period = 1000000 / freq;                // Período do sinal em microssegundos
@@ -304,7 +307,7 @@ void som_buz(uint16_t freq, uint16_t duration_ms)
         sleep_us(period / 2);    // Espera metade do período
     }
 }
-
+//  alerta de 3 bips caso a temperatura máxima seja atingida
 void bip_alerta()
 {
     for (int i = 0; i < 3; i++)
@@ -314,7 +317,7 @@ void bip_alerta()
     }
 }
 
-
+// função callback para mostrar em tempo real a temperatura das estufas a cada segundo
 bool callback_timer(repeating_timer_t *t)
 {
     printf("ESTUFA A (AZUL): %dºC\n", temperatura_estufa_A);

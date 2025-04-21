@@ -24,13 +24,13 @@ Além disso, a cada segundo serão impressos no Serial Monitor os valores de tem
 
 **MOVIMENTANDO O JOYSTICK EIXO Y**
 
-Ao movimentar o joystick no eixo Y, a temperatura do refrigerador azul aumentará, variando de 0 até 100 graus, estando em 0 no centro e 100 nas extremidades.
+Ao movimentar o joystick no eixo Y, a temperatura da estufa A aumentará, variando de 0 até 100 graus, estando em 0 no centro e 100 nas extremidades.
 
 Simultaneamente, o LED azul aumentará seu brilho proporcionalmente aos graus apresentados: Apagado em 0°C e  Totalmente aceso em 100°C
 
 **MOVIMENTANDO O JOYSTICK EIXO X**
 
-Ao movimentar o joystick no eixo X, a temperatura do refrigerador vermelho aumentará, variando de 0 até 100 graus, estando em 0 no centro e 100 nas extremidades.
+Ao movimentar o joystick no eixo X, a temperatura da estufa B aumentará, variando de 0 até 100 graus, estando em 0 no centro e 100 nas extremidades.
 Simultaneamente, o LED vermelho aumentará seu brilho proporcionalmente aos graus apresentados: Apagado em 0°C e Totalmente aceso em 100°C
 
 **FUNCIONALIDADE DOS BOTÕES**
@@ -47,13 +47,13 @@ Obs.: Caso algum dos refrigeradores ultrapasse o valor definido na matriz de LED
 
 #### Usando o Simulador Wokwi
 
-- Clone este repositório: git clone https://github.com/rober1o/sistema_refrigerador.git;
+- Clone este repositório: git clone https://github.com/rober1o/sistema_de_controle_estufas.git;
 - Usando a extensão Raspberry Pi Pico importar o projeto;
 - Compilar o código e clicar no arquivo diagram.json.
 
 #### Usando a BitDogLab
 
-- Clone este repositório: git clone https://github.com/rober1o/sistema_refrigerador.git;
+- Clone este repositório: git clone https://github.com/rober1o/sistema_de_controle_estufas.git;
 - Usando a extensão Raspberry Pi Pico importar o projeto;
 - Compilar o projeto;
 - Plugar a BitDogLab usando um cabo apropriado e gravar o código.
