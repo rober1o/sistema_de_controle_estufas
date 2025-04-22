@@ -4,7 +4,7 @@ Este projeto tem como objetivo desenvolver um sistema de alerta para monitoramen
 
 A proposta consiste em permitir, por meio dos botões da placa, a definição da temperatura máxima permitida. Caso essa temperatura seja ultrapassada, o sistema emitirá um alerta sonoro.
 
-Para simular as variações de temperatura dos dois refrigeradores, será utilizado o joystick da placa, que gera sinais analógicos. Esses sinais serão convertidos em dados digitais para análise. Com base nesses valores, o sistema controlará a intensidade de um LED via PWM, aumentando a luminosidade conforme a temperatura se eleva. Além disso, um alerta será acionado caso os valores ultrapassem o limite definido.
+Para simular as variações de temperatura dos duas estufas(A e B), será utilizado o joystick da placa, que gera sinais analógicos. Esses sinais serão convertidos em dados digitais para análise. Com base nesses valores, o sistema controlará a intensidade de um LED via PWM, aumentando a luminosidade conforme a temperatura se eleva. Além disso, um alerta será acionado caso os valores ultrapassem o limite definido.
  
 
 ## Componentes Utilizados
@@ -35,13 +35,13 @@ Simultaneamente, o LED vermelho aumentará seu brilho proporcionalmente aos grau
 
 **FUNCIONALIDADE DOS BOTÕES**
 
-Botão A: Incrementa um número na matriz de LEDs. Esse número representa a temperatura máxima que o refrigerador pode atingir, sendo multiplicado por 10.
+Botão A: Incrementa um número na matriz de LEDs. Esse número representa a temperatura máxima que as estufas pode atingir, sendo multiplicado por 10.
 Exemplo: Se o valor for 2, o sistema suportará no máximo 20 graus.
 
 Botão B: Decrementa um número na matriz de LEDs. Segue a mesma lógica do botão A: o valor representa a temperatura máxima, multiplicado por 10.
 Exemplo: Se o valor for 2, o sistema suportará no máximo 20 graus.
 
-Obs.: Caso algum dos refrigeradores ultrapasse o valor definido na matriz de LED, um alerta sonoro será emitido pelo buzzer, indicando superaquecimento no refrigerador.
+Obs.: Caso alguma das estufas ultrapasse o valor definido na matriz de LED, um alerta sonoro será emitido pelo buzzer, indicando superaquecimento das estufas.
 
 ### Como Usar
 
